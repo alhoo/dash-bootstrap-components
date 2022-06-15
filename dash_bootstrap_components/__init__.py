@@ -17,10 +17,6 @@ _js_dist = [
         "relative_package_path": (
             "_components/dash_bootstrap_components.min.js"
         ),
-        "external_url": (
-            f"https://unpkg.com/dash-bootstrap-components@{__version__}"
-            "/dist/dash_bootstrap_components.min.js"
-        ),
         "namespace": "dash_bootstrap_components",
     }
 ]

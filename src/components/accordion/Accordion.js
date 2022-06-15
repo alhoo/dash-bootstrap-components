@@ -54,6 +54,15 @@ const Accordion = props => {
     }
   };
 
+  const slice_children = (t, s, e) => {
+	const ret = Object.assign({}, t);
+	ret.props = Object.assign({}, t.props);
+	ret.props._dashprivate_layout = Object.assign({}, t.props._dashprivate_layout);
+	ret.props._dashprivate_layout.props = Object.assign({}, t.props._dashprivate_layout.props);
+	ret.props._dashprivate_layout.props.children = t.props._dashprivate_layout.props.children.map((it) => it).slice(s, e);
+	return ret;
+  }
+
   const items =
     children &&
     children.map((child, idx) => {
@@ -89,9 +98,11 @@ const Accordion = props => {
             // sure to overwrite them
             style={{marginTop: '0rem', marginBottom: '0rem'}}
           >
-            {title}
+            {title.startsWith("{first-child}")?slice_children(child, 0, 1):title}
           </RBAccordion.Header>
-          <RBAccordion.Body>{child}</RBAccordion.Body>
+          <RBAccordion.Body>
+            {title.startsWith("{first-child}")?slice_children(child, 1):child}
+	  </RBAccordion.Body>
         </RBAccordion.Item>
       );
     });
